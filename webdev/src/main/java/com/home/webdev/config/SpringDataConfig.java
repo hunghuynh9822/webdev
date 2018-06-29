@@ -26,7 +26,7 @@ public class SpringDataConfig {
 		public LocalSessionFactoryBean sessionFactory(BasicDataSource dataSource) {
 			LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 			sessionFactory.setDataSource(dataSource);
-			sessionFactory.setPackagesToScan(new String[] { "com.home.webcoffee.entities" });
+			sessionFactory.setPackagesToScan(new String[] { "com.home.webdev.entities" });
 			//sessionFactory.setAnnotatedClasses(Product.class,Account.class,Category.class,Role.class,Bill.class,BillDetail.class,Sale.class);
 			sessionFactory.setHibernateProperties(hibernateProperties());
 			return sessionFactory;
