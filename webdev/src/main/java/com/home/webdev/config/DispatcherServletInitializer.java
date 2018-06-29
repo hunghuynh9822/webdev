@@ -12,7 +12,7 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		// TODO Auto-generated method stub
-		return new Class<?>[] {SpringWebConfig.class,SpringDataConfig.class,SpringMessageConfig.class};
+		return new Class<?>[] {SpringWebConfig.class,SpringDataConfig.class,SpringMessageConfig.class, SpringSecurityConfig.class};
 	}
 
 	@Override
