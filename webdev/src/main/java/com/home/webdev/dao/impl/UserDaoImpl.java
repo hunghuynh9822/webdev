@@ -10,4 +10,9 @@ import com.home.webdev.entities.User;
 public class UserDaoImpl extends GenericDaoImpl<User, String>
 							implements UserDao{
 
+	public UserDaoImpl() {
+		super(User.class);
+		// TODO Auto-generated constructor stub
+	}
+
 }

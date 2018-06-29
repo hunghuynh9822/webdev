@@ -9,7 +9,7 @@
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Insert title here</title>
 
-<c:url var="home" value="/" scope="request" />
+<c:url var="home" value="/welcome/" scope="request" />
 
 <spring:url value="/resources/core/css/hello.css" var="coreCss" />
 <spring:url value="/resources/core/css/bootstrap.min.css"

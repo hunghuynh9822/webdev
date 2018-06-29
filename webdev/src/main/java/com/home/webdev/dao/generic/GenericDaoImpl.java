@@ -11,11 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class GenericDaoImpl<T,K extends Serializable> implements GenericDao<T, K>{
 	
-	private final Class<T> persistentClass;
+	private Class<T> entityClass;
 	
-	public GenericDaoImpl(){
-        this.persistentClass =(Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+	public GenericDaoImpl(Class<T> entityClass){
+        this.entityClass = entityClass;
     }
+	
+	private GenericDaoImpl() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	@Autowired
     private SessionFactory sessionFactory;
@@ -26,7 +30,7 @@ public class GenericDaoImpl<T,K extends Serializable> implements GenericDao<T, K
     }
 	
 	protected Criteria createEntityCriteria() {
-		return getSession().createCriteria(persistentClass);
+		return getSession().createCriteria(entityClass);
 	}
 	
 	@Override
@@ -42,13 +46,13 @@ public class GenericDaoImpl<T,K extends Serializable> implements GenericDao<T, K
 
 	@Override
 	public T getByKey(K key) {
-		return (T) getSession().get(persistentClass, key);
+		return (T) getSession().get(entityClass,key);
 	}
 
 	@Override
 	public List<T> getAll() {
 		Session session = getSession();
-		return session.createQuery("from " + persistentClass.getName()).list();
+		return session.createQuery("from " + entityClass.getName()).list();
 	}
 
 	@Override

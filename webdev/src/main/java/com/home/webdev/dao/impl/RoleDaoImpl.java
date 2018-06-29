@@ -10,4 +10,9 @@ import com.home.webdev.entities.Role;
 public class RoleDaoImpl extends GenericDaoImpl<Role, Integer>
 							implements RoleDao{
 
+	public RoleDaoImpl() {
+		super(Role.class);
+		// TODO Auto-generated constructor stub
+	}
+
 }

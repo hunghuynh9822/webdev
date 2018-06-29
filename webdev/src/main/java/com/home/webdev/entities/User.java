@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,21 +27,21 @@ public class User {
 	@Column (name = "fullname",nullable = false)
 	private String fullname;
 	
-	@Column(name = "email", nullable = false)
+	@Column(name = "email", nullable = true)
 	private String email;
 	
-	@Column(name ="address", nullable = false)
+	@Column(name ="address", nullable = true)
 	private String address;
 	
-	@Column(name = "phone",nullable = false)
+	@Column(name = "phone",nullable = true)
 	private String phone;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "dayofbirth", nullable = false)
+	@Column(name = "dayofbirth", nullable = true)
 	private Date dayofbirth;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="role_id", nullable=false)
+	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+	@JoinColumn(name="role_id", nullable= true)
 	private Role role;
 
 	public String getUsername() {
@@ -120,7 +121,7 @@ public class User {
 		this.role = role;
 	}
 
-	private User() {
+	public User() {
 		super();
 	}
 	

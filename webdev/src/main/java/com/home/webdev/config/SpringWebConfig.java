@@ -22,6 +22,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import com.home.webdev.interceptor.UrlLocaleInterceptor;
+import com.home.webdev.util.UserRoleConverter;
 
 @EnableWebMvc
 @Configuration
@@ -29,8 +30,8 @@ import com.home.webdev.interceptor.UrlLocaleInterceptor;
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	private static final Charset UTF8 = Charset.forName("UTF-8");
 	
-//	@Autowired
-//    private UserRoleConverter userRoleConverter;
+	@Autowired
+    private UserRoleConverter userRoleConverter;
 	
 	// resources của web
 	@Override
@@ -76,10 +77,10 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		// Add other converters ...
 	}
 	//Dành cho security
-	/**Optional. It's only required when handling '.' in @PathVariables which otherwise ignore everything after last '.' in @PathVaidables argument.
+	/*Optional. It's only required when handling '.' in @PathVariables which otherwise ignore everything after last '.' in @PathVaidables argument.
 	 * It's a known bug in Spring [<a class="vglnk" href="https://jira.spring.io/browse/SPR-6164" rel="nofollow"><span>https</span><span>://</span><span>jira</span><span>.</span><span>spring</span><span>.</span><span>io</span><span>/</span><span>browse</span><span>/</span><span>SPR</span><span>-</span><span>6164</span></a>], still present in Spring 4.1.7.
 	 * This is a workaround for this issue.
-	 *//*
+	 */
 	@Override
 	public void configurePathMatch(PathMatchConfigurer matcher) {
 		matcher.setUseRegisteredSuffixPatternMatch(true);
@@ -88,5 +89,5 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	@Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(userRoleConverter);
-    }*/
+    }
 }

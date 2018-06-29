@@ -21,6 +21,11 @@ import com.home.webdev.entities.PersistentLogin;
 public class PersistentTokenDaoImpl extends GenericDaoImpl<PersistentLogin, String>
 				implements PersistentTokenDao,PersistentTokenRepository{
 
+	public PersistentTokenDaoImpl() {
+		super(PersistentLogin.class);
+		// TODO Auto-generated constructor stub
+	}
+
 	static final Logger logger = LoggerFactory.getLogger(PersistentTokenDaoImpl.class);
 	
 	@Override

@@ -1,0 +1,68 @@
+body {
+	height: 100%;
+}
+
+.center{
+	position: relative;
+	margin: auto;
+}
+.floatRight {
+	float: right;
+}
+
+.has-error {
+	color: red;
+}
+.page{
+	padding:0% 4% 10% 4%;
+	font-size:30px;
+	margin-top:3%;
+}
+.generic-container {
+	width: 60%;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 5%;
+	margin-bottom: 20px;
+	padding: 20px;
+	background-color: #EAE7E7;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	box-shadow: 0 0 30px black;
+}
+
+.custom-width {
+	width: 80px !important;
+}
+
+body, .form-control {
+	font-size: 12px !important;
+}
+
+.login-container {
+	margin-top: 100px;
+	background-color: floralwhite;
+	width: 40%;
+	left: 30%;
+	position: absolute;
+}
+
+.login-card {
+	width: 80%;
+	margin: auto;
+}
+
+.login-form {
+	padding: 10%;
+}
+
+.header {
+	margin-bottom: 50%;
+	height: 50px;
+	position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+	/*
+	* border-bottom: solid 1px gray;
+	*/
+}
