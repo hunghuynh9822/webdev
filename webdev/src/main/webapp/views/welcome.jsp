@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
     <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -9,7 +10,7 @@
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Insert title here</title>
 
-<c:url var="home" value="/welcome/" scope="request" />
+<c:url var="home" value="/" scope="request" />
 
 <spring:url value="/resources/core/css/hello.css" var="coreCss" />
 <spring:url value="/resources/core/css/bootstrap.min.css"
@@ -17,9 +18,6 @@
 <link href="${bootstrapCss}" rel="stylesheet" />
 <link href="${coreCss}" rel="stylesheet" />
 
-<spring:url value="/resources/core/js/jquery.1.10.2.min.js"
-	var="jqueryJs" />
-<script src="${jqueryJs}"></script>
 
 </head>
 <body>
@@ -75,14 +73,13 @@
 		</p>
 	</footer>
 </div>
-
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script>
-	jQuery(document).ready(function($) {
+jQuery(document).ready(function() {
 
 		$("#search-form").submit(function(event) {
 
-			// Disble the search button
-			enableSearchButton(false);
 
 			// Prevent the form from submitting via the browser.
 			event.preventDefault();
@@ -108,6 +105,11 @@
 			data : JSON.stringify(search),
 			dataType : 'json',
 			timeout : 100000,
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("accept", "application/json");
+				xhr.setRequestHeader("contentType", "application/json");
+				xhr.setRequestHeader(header, token);
+			},
 			
 			success : function(data) {
 				console.log("SUCCESS: ", data);
@@ -124,11 +126,7 @@
 		});
 
 	}
-
-	function enableSearchButton(flag) {
-		$("#btn-search").prop("disabled", flag);
-	}
-
+	
 	function display(data) {
 		var json = "<h4>Ajax Response</h4><pre>"
 				+ JSON.stringify(data, null, 4) + "</pre>";
@@ -137,4 +135,5 @@
 </script>
 
 </body>
+
 </html>

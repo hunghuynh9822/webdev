@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.home.webdev.view.Views;
+import com.home.webdev.entities.User;
 
 public class AjaxResponseBody {
 

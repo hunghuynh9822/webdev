@@ -2,6 +2,8 @@ package com.home.webdev.controller;
 
 import java.util.Locale;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +40,8 @@ public class UserController {
         return "./user/registration";
     }
 
-    @RequestMapping(value = "/newuser", method = RequestMethod.POST , produces = "text/plain;charset=UTF-8")
-    public String saveUser(@Valid User user, BindingResult result,ModelMap model) {//BindingResult result,
+    @RequestMapping(value = "/newuser", method = RequestMethod.POST)
+    public String saveUser(@Valid User user, BindingResult result,ModelMap model, HttpServletRequest request) {//BindingResult result,
 
         if (result.hasErrors()) {
         	model.addAttribute("user", user);
@@ -60,6 +62,13 @@ public class UserController {
 
         model.addAttribute("success", user.getFullname()	);
         model.addAttribute("loggedinuser", SecurityUtil.getPrincipal());
+        
+        //Login
+        try {
+			request.login(user.getUsername(), user.getPassword());
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
         
         //return "success";
         return "./user/registrationsuccess";
