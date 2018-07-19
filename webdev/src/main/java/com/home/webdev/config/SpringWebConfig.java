@@ -75,6 +75,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		stringConverter.setSupportedMediaTypes(Arrays.asList(new MediaType("text", "plain", UTF8)));
 		converters.add(stringConverter);
 		
+		//https://stackoverflow.com/questions/38066591/415-unsupported-mediatype-for-post-request-in-spring-application
 		converters.add(new MappingJackson2HttpMessageConverter());
         super.configureMessageConverters(converters);
 

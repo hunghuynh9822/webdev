@@ -7,6 +7,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="_csrf_header" content="${_csrf.headerName}" />
 <c:url var="home" value="/" scope="request" />
 <link rel="stylesheet"
 	href="<c:url value="/resources/core/css/bootstrap.min.css" />">
@@ -25,7 +26,7 @@
 				<div class="form-group col-md-12">
 					<label class="col-md-3 control-lable" for="fullname"><spring:message code="user.registration.fullName" /></label>
 					<div class="col-md-12">
-						<form:input type="text" path="fullname" id="fullname" class="form-control input-sm" onblur="validatefullname()"/>
+						<form:input type="text" path="fullname" id="fullname" class="form-control input-sm" onblur="validateFullname()"/>
 						<div class="has-error" id="err-fullname">
 							<form:errors path="fullname" class="help-inline" />
 						</div>
@@ -44,7 +45,7 @@
 							</c:when>
 							<c:otherwise>
 								<form:input type="text" path="username" id="username"
-									class="form-control input-sm" /><!-- onblur="validateusername()" -->
+									class="form-control input-sm" onblur="validateUsername()" onchange="searchViaAjax()"/><!--  -->
 								<div class="has-error" id="err-username">
 									<form:errors path="username" class="help-inline"/>
 								</div>
@@ -192,20 +193,21 @@
 				</div>
 			</div>
 		</form:form>
-		<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="csrfToken" /> -->
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="csrfToken" />
 		<!-- ?${_csrf.parameterName}=${_csrf.token} -->
 	<!-- ${_csrf.parameterName}-->
 	<!-- ${_csrf.headerName}-->
 	</div>
 </body>
 
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/core/js/bootstrap.min.js" />"></script>
-
-<script type="text/javascript"
-	src="<c:url value="/resources/js/app.js" />"></script>
-
 <script type="text/javascript"
 	src="<c:url value="/resources/js/validate.js" />"></script>
+	<script type="text/javascript"
+	src="<c:url value="/resources/js/app.js" />"></script>
 	
 </html>
