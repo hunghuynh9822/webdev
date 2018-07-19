@@ -27,12 +27,12 @@
 	</c:choose>
 		<sec:authorize access="hasRole('ADMIN')">
 			<span class="well floatRight"> <spring:message code="user.registrationsuccess.goto" /> <a
-				href="<c:url value='../admin/list' />"><spring:message code="user.registrationsuccess.list" /></a>
+				href="<c:url value='./admin/list' />"><spring:message code="user.registrationsuccess.list" /></a>
 			</span>
 		</sec:authorize>
 
 		<span class="well floatLeft"> <spring:message code="user.registrationsuccess.goto" /> <a
-			href="<c:url value='../home' />"><spring:message code="user.registrationsuccess.home" /></a>
+			href="<c:url value='./home' />"><spring:message code="user.registrationsuccess.home" /></a>
 		</span>
 	</div>
 </body>

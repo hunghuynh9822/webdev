@@ -55,7 +55,7 @@
 								class="btn btn-block btn-primary btn-default" value="<spring:message code="login.button.login" />">
 						</div>
 						<div class="well">
-							<a href="<c:url value='./user/newuser' />"><spring:message code="login.registrantion" /></a> <span
+							<a href="<c:url value='./registration' />"><spring:message code="login.registrantion" /></a> <span
 								class="well floatRight"> <a
 								href="<c:url value='./home' />"><spring:message code="login.home" /></a>
 							</span>

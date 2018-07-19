@@ -168,25 +168,25 @@
 				<div class="form-actions center">
 					<c:choose>
 						<c:when test="${edit}">
-							<input type="submit" value="<spring:message code="user.registration.update" />"
+							<input type="submit" id = "btn-submit" value="<spring:message code="user.registration.update" />"
 								class="btn btn-primary btn-sm"/> <spring:message code="user.registration.or" /> 
 							<sec:authorize access="hasRole('ADMIN')">
-								<a href="<c:url value='../admin/list' />"
+								<a href="<c:url value='./admin/list' />"
 									class="btn btn-primary btn-sm"><spring:message code="user.registration.cancel" /></a>
 							</sec:authorize>
 							<sec:authorize access="hasAnyRole('STAFF','CUSTOMER')">
-								<a href="<c:url value='../home' />" class="btn btn-primary btn-sm"><spring:message code="user.registration.cancel" /></a>
+								<a href="<c:url value='./home' />" class="btn btn-primary btn-sm"><spring:message code="user.registration.cancel" /></a>
 							</sec:authorize>
 						</c:when>
 						<c:otherwise>
-							<input type="submit" value="<spring:message code="user.registration.register" />"
+							<input type="submit" id = "btn-submit" value="<spring:message code="user.registration.register" />"
 								class="btn btn-primary btn-sm" id = "btn-submit"/> <spring:message code="user.registration.or" />
 								<sec:authorize access="hasRole('ADMIN')">
-								<a href="<c:url value='../admin/list' />"
+								<a href="<c:url value='./admin/list' />"
 									class="btn btn-primary btn-sm"><spring:message code="user.registration.cancel" /></a>
 								</sec:authorize>
 							<sec:authorize access="isAnonymous()">
-								<a href="<c:url value='../home' />" class="btn btn-primary btn-sm"><spring:message code="user.registration.cancel" /></a>
+								<a href="<c:url value='./home' />" class="btn btn-primary btn-sm"><spring:message code="user.registration.cancel" /></a>
 							</sec:authorize>
 						</c:otherwise>
 					</c:choose>

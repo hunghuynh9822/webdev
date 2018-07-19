@@ -2,7 +2,7 @@ console.log('Validate JavaScript');
 
 	function validateForm() {
 		if (validateFullname() && validateUsername() && validateEmail()
-				&& validatePassword() && validateComfirm() && validatePhone() && searchViaAjax()) {
+				&& validatePassword() && validateComfirm() && validatePhone()) {
 			return true;
 		}
 		return false;
@@ -64,21 +64,25 @@ console.log('Validate JavaScript');
 			success : function(data) {
 				console.log("SUCCESS: ", data);
 				if(data.result != null){
-					displayMessage(data);
-					return false;
+					enableSearchButton(true);
 				}
-				return true;
-				
+				else
+				{
+					enableSearchButton(false);
+				}
+				displayMessage(data);
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
-				return false;
 			},
 			done : function(e) {
 				console.log("DONE");
 			}
 		});
 
+	}
+	function enableSearchButton(flag) {
+		$("#btn-submit").prop("disabled", flag);
 	}
 	function displayMessage(data) {
 		var message;

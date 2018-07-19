@@ -26,53 +26,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private MessageSource messageSource;
+    
 
-    @RequestMapping(value = "/newuser", method = RequestMethod.GET)
-    public String newUser(ModelMap model) {
-        User user = new User();
-        model.addAttribute("user", user);
-        model.addAttribute("edit", false);
-        model.addAttribute("loggedinuser", SecurityUtil.getPrincipal());
-        model.addAttribute("roles", userService.findAllRoles());
-        
-        return "./user/registration";
-    }
-
-    @RequestMapping(value = "/newuser", method = RequestMethod.POST)
-    public String saveUser(@Valid User user, BindingResult result,ModelMap model, HttpServletRequest request) {//BindingResult result,
-
-        if (result.hasErrors()) {
-        	model.addAttribute("user", user);
-            return "/user/registration";
-        }
-
-        if(!userService.isUserUnique(user.getUsername())){
-        	model.addAttribute("user", user);
-            FieldError ssoError =new FieldError("user","username", messageSource.getMessage("user.unique.userName", new String[]{user.getUsername()}, Locale.getDefault()));
-            result.addError(ssoError);
-            return "./user/registration";
-        }
-        if(user.getUsername().equals("admin"))
-        {
-        	userService.isAdmin(user);
-        }
-        userService.saveUser(user);
-
-        model.addAttribute("success", user.getFullname()	);
-        model.addAttribute("loggedinuser", SecurityUtil.getPrincipal());
-        
-        //Login
-        try {
-			request.login(user.getUsername(), user.getPassword());
-		} catch (ServletException e) {
-			e.printStackTrace();
-		}
-        
-        //return "success";
-        return "./user/registrationsuccess";
-    }
+    
 
 
     @RequestMapping(value = "/edit-user-{userName}", method = RequestMethod.GET)

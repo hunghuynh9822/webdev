@@ -51,13 +51,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     	http.csrf();
     	//Các trang không yêu cầu login
-        http.authorizeRequests().antMatchers("/en/", "/en/home","/en/login","/en/logout","/en/user/newuser").permitAll();
-        http.authorizeRequests().antMatchers("/vn/", "/vn/home","/vn/login","/vn/logout","/vn/user/newuser").permitAll();
+        http.authorizeRequests().antMatchers("/en/", "/en/home","/en/login","/en/logout","/en/registration","/signup").permitAll();
+        http.authorizeRequests().antMatchers("/vn/", "/vn/home","/vn/login","/vn/logout","/vn/registration","/signup").permitAll();
         //Trang /userInfo yêu cầu phải login với vai trò ADMIN,STAFF,CUSTOMER
         //Nếu chưa login, nó sẽ redirect tới trang /login
-        http.authorizeRequests().antMatchers("/en/user/*","/vn/user/*").access("hasAnyRole('ADMIN','STAFF','CUSTOMER')");
+        http.authorizeRequests().antMatchers("/en/user/*","/vn/user/*","/user/*").access("hasAnyRole('ADMIN','STAFF','CUSTOMER')");
         //Trang chỉ dành cho ADMIN
-        http.authorizeRequests().antMatchers("/en/admin/**","/vn/admin/**").access("hasRole('ADMIN')");
+        http.authorizeRequests().antMatchers("/en/admin/**","/vn/admin/**","/admin/**").access("hasRole('ADMIN')");
         //Khi người dùng đã login, với vai trò XX.
         //Nhưng truy cập vào trang yêu cầu vai trò YY,
         //Ngoại lệ AccessDeniedException sẽ ném ra.
@@ -78,8 +78,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             .rememberMe().rememberMeParameter("remember-me").tokenRepository(tokenRepository)
             .tokenValiditySeconds(86400);
         
-        
     }
+	
+	 @Override
+	   public UserDetailsService userDetailsService() {
+	       return userDetailsService;
+	   }
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
