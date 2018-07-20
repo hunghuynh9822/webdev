@@ -32,15 +32,16 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userService.findByUserName(userName);
+        User user = userService.findByUserNameOrEmail(userName);
         logger.info("User : {}", user);
         if (user == null) {
             logger.info("User not found");
-            throw new UsernameNotFoundException("Username not found");
+            throw new UsernameNotFoundException("Username or Email not found");
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 true, true, true, true, getGrantedAuthorities(user));
     }
+    
 
     private List<GrantedAuthority> getGrantedAuthorities(User user) {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();

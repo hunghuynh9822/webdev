@@ -32,6 +32,12 @@ public class UserService {
 		return user;
 	}
 	
+	public User findByUserNameOrEmail(String username)
+	{
+		User user = dao.getByUsernameOrEmail(username);
+		return user;
+	}
+	
 	public void isAdmin(User user)
 	{
 		user.setRole(roleDao.getByKey(1));
